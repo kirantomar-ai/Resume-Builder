@@ -1,0 +1,70 @@
+{
+  "name": "react-bootstrap-time-picker",
+  "version": "2.0.1",
+  "description": "Bootstrap Time Picker React Component",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "npm run clean && npm run build:umd",
+    "build:umd": "NODE_ENV=production ./node_modules/.bin/webpack  -p",
+    "clean": "./node_modules/.bin/rimraf dist coverage && ./node_modules/.bin/rimraf lib",
+    "lint": "./node_modules/.bin/eslint src",
+    "test": "mocha --require @babel/register --require test/setup.js test/*.spec.js",
+    "coverage": "NODE_ENV=production webpack && nyc _mocha --require @babel/register && NODE_ENV=production webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yury-dymov/react-bootstrap-time-picker"
+  },
+  "keywords": [
+    "react",
+    "react-bootstrap",
+    "react-component",
+    "time",
+    "picker",
+    "select",
+    "input"
+  ],
+  "author": "Yury Dymov <yuri@dymov.me> (http://github.com/yury-dymov)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yury-dymov/react-bootstrap-time-picker/issues"
+  },
+  "homepage": "https://github.com/yury-dymov/react-bootstrap-time-picker",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
+    "chai-enzyme": "^1.0.0-beta.1",
+    "cheerio": "^1.0.0-rc.3",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "jsdom": "^15.1.1",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.8",
+    "react-dom": "^16.8.6",
+    "webpack": "^3.12.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "time-number": "^1.1.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-bootstrap": ">=1.0.0-alpha"
+  }
+}

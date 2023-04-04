@@ -1,6 +1,5 @@
 import React from 'react'
 import {Routes, Route ,Navigate} from 'react-router-dom';
-import { useSelector} from 'react-redux'
 import DetailsFillingPage from './Components/DetailsFillComponents/DetailsFillingPage';
 import ResumeTemplates from './Components/Home'
 import NavBar from './Components/Navbar'
@@ -10,8 +9,6 @@ import './App.css';
 
 // This component defines routing for other components //
 function App() {
-  const data = useSelector(state=>state.dataStore)
-  
   return (
     <div>
         <div> 

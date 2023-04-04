@@ -25,7 +25,7 @@ function TextArea(props) {
 
     useEffect(() => {
         if(props.validation && props.validation.required){
-            if(value==''){
+            if(value===''){
                 props.onChange(value,'field is required!')
             }
         }

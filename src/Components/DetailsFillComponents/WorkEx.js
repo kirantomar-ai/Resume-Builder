@@ -4,7 +4,6 @@ import BottomNavigation from './BottomNavigation'
 import InputComponent from '../InputComponents/TextField'
 import TextArea from '../InputComponents/TextArea'
 import { updateWorkEx ,addArrayElement,removeArrayElement, updateErrorMessages } from '../../ReduxManager/dataStoreSlice'
-const shortid= require('shortid')
 
 function WorkEx(props) {
 

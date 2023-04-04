@@ -1,9 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import InputComponent from '../InputComponents/TextField'
 import { updateKeySkills ,addArrayElement,removeArrayElement } from '../../ReduxManager/dataStoreSlice'
 import BottomNavigation from './BottomNavigation'
-const shortid= require('shortid')
 
 function KeySkills(props) {
     const skillHeads = useSelector(state => state.dataStore.skills)
@@ -27,7 +26,7 @@ function KeySkills(props) {
     
         {skillHeads.map((item,index)=>{
             return(
-                <div key={shortid.generate()}
+                <div key={index}
                      className='col-sm-5 mt-5 mb-5'>
                     <InputComponent  type="text" value={item.skillName}
                       onChange={(value)=>{

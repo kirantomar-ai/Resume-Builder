@@ -1,11 +1,11 @@
-import React,{useState, useEffect} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import FileUploadComponent from './FileUpload'
 import {stateNames} from '../Data'
 import InputComponent from '../InputComponents/TextField'
 import TextArea from '../InputComponents/TextArea'
 import BottomNavigation from './BottomNavigation'
-import { updatePersonalInfo, updateState,updateErrorMessages } from '../../ReduxManager/dataStoreSlice'
+import { updatePersonalInfo, updateErrorMessages } from '../../ReduxManager/dataStoreSlice'
 
 
 function PersonalInfo(props) {

@@ -1,10 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import InputComponent from '../InputComponents/TextField'
 import { updateEducation ,addArrayElement,removeArrayElement ,updateErrorMessages} from '../../ReduxManager/dataStoreSlice'
 import BottomNavigation from './BottomNavigation'
-const shortid= require('shortid')
-
 
 function Education(props) {
     const educationHeads = useSelector(state => state.dataStore.education)
@@ -47,7 +45,6 @@ function Education(props) {
                         <div className='col-sm-5'>
                             <select id="type" className="form-control" value={heading.Type}
                                     onChange={(e)=>{
-                                        alert(e.target.value)
                                         dispatch(updateEducation({
                                             key: 'Type',
                                             value:e.target.value,
@@ -55,6 +52,7 @@ function Education(props) {
                                          }))
                                     }}
                             >
+
                                 <option value='Graduation'> Graduation</option>
                                 <option value='Post Graduation'> Post Graduation</option>
                             </select>

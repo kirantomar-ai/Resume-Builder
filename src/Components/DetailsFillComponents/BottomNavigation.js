@@ -26,25 +26,28 @@ function BottomNavigation(props) {
                                 </Link>
                               </div>
                               <div className="col-sm-3 mt-4">
+                                {/* this link will be active only when the 'props.isFormValid' === true, and will direct the user to the nextPagePath otherwise it will remain inactive and show the alert, */}
                                 <Link to={props.isFormValid?props.nextPagePath:'#'}>
                                   <button className='btn btn-primary p-1 px-2'
                                             onClick={()=>{
                                                 if(!props.isFormValid){
                                                     alert('Please fill all the necessary details correctly!')
                                                     dispatch(updateState({
+                                                      //this dispatch functions update the value of 'showErrorMessages' as true, which will be used by 'TextField' component to display warning Message beneath each of the 'TextField' where some kind of validation is required.
                                                       key:'showErrorMessages',
                                                       value:true
                                                     }))
                                                 }
                                                 else if(props.isFormValid){
                                                   dispatch(updateState({
+                                                    //this dispatch functions update the value of 'showErrorMessages' as false,when there is errorMessages is empty or 'prop.isFormValid'=== true, which will be used by 'TextField' component to hide warning Message beneath each of the 'TextField' where some kind of validation is required.
                                                     key:'showErrorMessages',
                                                     value:false
                                                   }))
                                                 }
                                             }}
                                   >
-                                    {window.location.pathname === "/detailsfillingpage/keyskills"
+                                    {window.location.pathname === "/detailsfillingpage/keyskills" //this condition changes the name of the 'next' button as 'preview' when the user reaches 'keySkills' page.
                                     ?'Preview'
                                     :'Next'}
                                   </button>

@@ -5,9 +5,9 @@ const shortid = require('shortid')
 function Template4() {
     const dataStore = useSelector(state => state.dataStore)
   return (
-    <div style={{border:"1px solid #4b6982"}}>
+    <div className='w-100' style={{border:"1px solid #4b6982"}}>
         <div className='row m-0'>
-            <div className='col col-sm-3 d-flex align-items-center pt-5' style={{backgroundColor:"#4b6982", flexDirection:"column"}}>
+            <div className='col col-3 d-flex align-items-center pt-5' style={{backgroundColor:"#4b6982", flexDirection:"column"}}>
                 <div className=" media me-5" >
                     <img className="rounded align-self-center  " src={ dataStore.imageFile} alt='profile-pic'
                         style={{maxHeight:'180px',minHeight:"100px", width:'100px', background:'grey',padding:0}}/>
@@ -18,18 +18,18 @@ function Template4() {
                 </div>
                 <div className=" ">
                     <div className='p-5 ms-4' style={{fontSize:"18px",display:"inline-block"}}>
-                        <div className="col-sm-5 px-2 mb-2 " style={{backgroundColor:'white', color:"black"}}>Email:</div>
+                        <div className="px-2 mb-2 " style={{backgroundColor:'white', color:"black"}}>Email:</div>
                         <div style={{color:'#f7f7f7'}}>{dataStore.personalInfo.Email}</div>
-                        <div className="col-sm-5 px-2 mb-2 mt-2" style={{backgroundColor:'white', color:"black"}}>Contact:</div>
+                        <div className=" px-2 mb-2 mt-2" style={{backgroundColor:'white', color:"black"}}>Contact:</div>
                         <div style={{color:'#f7f7f7'}}>{dataStore.personalInfo.Mobile}</div>
-                        <div className="col-sm-5 px-2 mb-2 mt-2 " style={{backgroundColor:'white', color:"black"}}>Address:</div>
+                        <div className="px-2 mb-2 mt-2 " style={{backgroundColor:'white', color:"black"}}>Address:</div>
                         <div style={{color:'#f7f7f7'}}>{dataStore.personalInfo.Address1 +", "+ dataStore.personalInfo.Address2
                                 +",  "+dataStore.personalInfo.City+", "+ dataStore.personalInfo.State +", "+ dataStore.personalInfo.Pin}
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='col col-sm-9'>
+            <div className='col col-9'>
                 <div>
                     <div className="text-justify mt-4">{dataStore.personalInfo.Objective}</div>
                     <hr style={{height:"5px",backgroundColor:"#4b6982"}}/> 

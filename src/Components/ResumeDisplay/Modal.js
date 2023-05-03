@@ -2,7 +2,8 @@ import React from 'react'
 import {CheckCircleFill} from 'react-bootstrap-icons'
 
 function SuccessMessage(props) {
-    //the Modal Component displays the Modal with the below written message , when the user clicks on the Save resume button and downloads it successfully on its computer//
+
+//the Modal Component displays the modal popup on the screen with the message 'Your resume has been successfully downloaded' , when the user clicks on the Save resume button and downloads it successfully on the user's computer//
   return (
     <div >
         <div className={(props.showModal) ? 'modal block d-flex align-items-center' :'modal'} >

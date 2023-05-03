@@ -8,14 +8,14 @@ import Template3 from '../TemplatesComponents/Template3'
 import Template4 from '../TemplatesComponents/Template4'
 import html2canvas from 'html2canvas'
 import SuccessMessage from './Modal'
-import {Row, Col} from 'antd'
 
 function MyResume() {
-    //this component shows the resume created by the user with the 'Save'and 'Back' button//
+    //this component shows the preview of the resume created by the user with the 'Save'and 'Back' button//
     const selectedTemplate = useSelector(state => state.dataStore.selectedTemplate)
     const [showModal, setShowModal] = useState(false)
-
     const downloadComponentPDF = () => {
+        //this function is called when the user clicks on the 'Save Resume' button.
+        // it takes the 'div' element with id 'divToPrint' and then convert it into pdf format which is downloaded into the user's computer memory.
         const input = document.getElementById('divToPrint');
         html2canvas(input, { scrollY: -window.scrollY })
         .then((canvas) => {
@@ -44,8 +44,9 @@ function MyResume() {
       }
     
     return (
-        <div>
-            <div className='d-flex mt-2 p-5' >
+        <div className='container w-100 overflow-scroll'>
+        <div  className=' row mt-2 p-5'>
+            <div className='w-100 d-flex justify-content-center'>
                 <Link to="/detailsfillingpage/keyskills">
                     <button className='btn btn-primary me-4 p-2'> Go-Back</button>
                 </Link>
@@ -53,10 +54,15 @@ function MyResume() {
                     Save Resume
                 </button>
             </div>
-            <Row gutter ={[16,16]}>
-                <Col md={{span:16}}>
-                    <div id='divToPrint' className=' resume' >
-                        {selectedTemplate === "Template 1"
+        </div>
+        <div  className='  mt-2 p-5 w-100 ' style={{ minWidth:"1200px", overflow:'scroll'}}>
+            <div className=' w-100  d-flex justify-content-center '>
+                <div className='w-100 ' >
+                    <div id='divToPrint' className='w-100'>
+                        {/* In this div, user selected template is rendered alongwith the details filled by the user. */}
+                        {selectedTemplate===""
+                        ?<div><h1>Please select a template!</h1></div>
+                        :selectedTemplate === "Template 1"
                         ?<Template1  />
                         :selectedTemplate === "Template 2"
                         ?<Template2  />
@@ -64,12 +70,17 @@ function MyResume() {
                         ?<Template3  />
                         :<Template4  />}
                     </div>
-                </Col>
-            </Row>
+                </div>
+
+            </div>
+           
             
+            {/* this SuccessMessage component displays modal popup on the screen with the message 'Your resume has been successfully downloaded'. */}
             <div><SuccessMessage showModal={showModal} setShowModal={setShowModal}/></div>
 
         </div>
+        </div>
+
         
     )
 }

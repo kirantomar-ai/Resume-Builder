@@ -1,16 +1,36 @@
 import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import BottomNavigation from './BottomNavigation'
-import InputComponent from '../InputComponents/TextField'
+import TextField from '../InputComponents/TextField'
 import TextArea from '../InputComponents/TextArea'
 import { updateWorkEx ,addArrayElement,removeArrayElement, updateErrorMessages } from '../../ReduxManager/dataStoreSlice'
 
+// this component renders the work experience page inside the details filling page.
 function WorkEx(props) {
 
-    const workHeads = useSelector(state=> state.dataStore.workEx)
+    const workHeads = useSelector(state=> state.dataStore.workEx) //this state is used to store workEx object of dataStoreSlice.
     const dispatch = useDispatch();
 
+    const onChangeHandler= (key,value,index,errorMessage=undefined) =>{
+        //this function is called each time when the user provides input to the targeted'TextField'
+        dispatch(updateWorkEx({
+            //this function updates the targeted key of the workEx element of dataStore in dataStoreSlice.js //
+            key: key,
+            value:value,
+            index:index,
+       }))
+       if(errorMessage!==undefined){
+          dispatch(updateErrorMessages({
+            // this function is called each time when there is a validatin check applied on the 'TextField' component and it inserts án object {key: errorMessage} into the errorMessages of dataStoreSlice.
+            key:key,
+            value:errorMessage
+          }))
+        }
+      }
+
     function AddExperience(){
+        //this function is used to push a blank object in the workEx element of dataStoreSlice,
+      //when the user clicks on the Add-new button to add more related details//
         dispatch(addArrayElement({
             key: 'workEx',
             element:{
@@ -24,9 +44,11 @@ function WorkEx(props) {
          }))
     }
     function RemoveExperience(){
+        //this function deletes the latest saved details in the workEx element, when the user clicks on the remove button.
         dispatch(removeArrayElement({key:"workEx" }))
     }
     function yearRange(start, end) {
+        //this function  is used to create list of years in a range to display list of options in the 'Select' input field of the form.
         var ans = [];
         for (let i = start; i <= end; i++) {
             ans.push(i);
@@ -38,68 +60,49 @@ function WorkEx(props) {
     <div className='p-5' style={{textAlign:"left"}}>
         <h2 >Work Experience</h2>
         
-        {workHeads.map((heading,index)=>{
+        {workHeads.map((workHeading,index)=>{
             return(
                 <div key={index}>
                     <div className="container p-2 font" style={{textAlign:"left"}}>
                         <h5>Experience {index+1}</h5>
                         <hr/>
-                        <div className="row row-cols-2">
-                            <div className="col mt-4">
-                                <div >
-                                    <label className="col-sm-9" htmlFor="title" >Job Title:
-                                    </label>
-                                    <InputComponent  
-                                        type="text" elementId="title" placeholder='Enter Job Title' 
-                                        value={heading.title}
-                                    
-                                        onChange={(value,error)=>{
-                                            dispatch(updateWorkEx({
-                                              key: 'title',
-                                              value:value,
-                                              index:index,
-                                            }))
-                                            dispatch(updateErrorMessages({
-                                                key:'title',
-                                                value:error
-                                            }))
-                                        
-                                        }}
-                                        
-                                        validation={{
-                                            required:true
-                                          }}
-                                    />
-                                </div>
-                            </div>
-                            <div className="col mt-4">
-                                <div >
-                                    <label className="col-sm-9" htmlFor="name" >Organization Name:
-                                        <InputComponent   type="text" elementId="name"  placeholder= 'Enter Organization Name'
-                                            value={heading.orgName}
-                                            
-                                            onChange={(value,error)=>{
-                                                    dispatch(updateWorkEx({
-                                                        key: 'orgName',
-                                                        value:value,
-                                                        index:index,
-                                                    }))
-                                                    dispatch(updateErrorMessages({
-                                                        key:'orgName',
-                                                        value:error
-                                                    }))
+                        <div className="row font">
+                            <div className="col-lg-6 col-12 pt-5 px-4">                                
+                                    <label className="col-sm-12 col-12" htmlFor="title" >Job Title:
+                                        <TextField  
+                                            type="text" elementId="title" placeholder='Enter Job Title' 
+                                            value={workHeading.title}
+                                            onChange={
+                                                // this onChange will be called by TextField component as props.onChange when the user gives input to the targeted field and,
+                                                //the user given input will be send as value alongwith errorMessage , if there is any .
+                                                (value,errorMessage)=>{
+                                                    //this function calls back onChangeHandler which will update targeted key of 'WorkEx' and 'errorMessages' in dataStoreSlice as per the value and errorMessage respectively.
+                                                    onChangeHandler('title',value,index,errorMessage)
+                                                }
+                                            }
+                                            validation={{
+                                                //this attribute is used to check whether there is any validation check on the 'TextField' or not.
+                                                required:true
                                             }}
+                                        />
+                                    </label>
+                            </div>
+                            <div className="col-lg-6 col-12 pt-5 px-4">  
+                                    <label className="col-sm-12 col-12" htmlFor="name" >Organization Name:
+                                        <TextField   type="text" elementId="name"  placeholder= 'Enter Organization Name'
+                                            value={workHeading.orgName}
+                                            onChange={(value,errorMessage)=>{onChangeHandler('orgName',value,index,errorMessage)}}
                                             validation={{
                                                 required:true
                                             }}
                                         />
                                     </label>
-                                </div>
                             </div>
-                            <div className="col mt-3">
-                                <label htmlFor="start"className="col-sm-9 col-form-label" >Start year</label>
-                                <div className="col-sm-9">
-                                        <select id="start" className="form-control" value={heading.startYear}
+                        </div>
+                        <div className="row font">
+                            <div className="col-lg-6 col-12 pt-5 px-4"> 
+                                <label htmlFor="start"className="col-sm-12 col-12 col-form-label" >Start year
+                                        <select id="start" className="form-control" value={workHeading.startYear}
                                          onChange={(e)=>{
                                             dispatch(updateWorkEx({
                                                 key: 'startYear',
@@ -116,12 +119,11 @@ function WorkEx(props) {
                                                ) 
                                             })}
                                         </select>
-                                </div>
+                                </label>
                             </div>
-                            <div className="col mt-3">
-                                <label htmlFor="end"className="col-sm-9 col-form-label" >End year</label>
-                                <div className="col-sm-9">
-                                        <select id="end" className="form-control" value={heading.endYear}
+                            <div className="col-lg-6 col-12 pt-5 px-4"> 
+                                <label htmlFor="end"className="col-sm-12 col-12  col-form-label" >End year
+                                        <select id="end" className="form-control" value={workHeading.endYear}
                                          onChange={(e)=>{
                                             dispatch(updateWorkEx({
                                                 key: 'endYear',
@@ -129,7 +131,7 @@ function WorkEx(props) {
                                                 index:index,
                                             }))
                                         }}>
-                                            
+                                            <option > Select year</option>
                                             {
                                             year.map((yr,i)=>{
                                                return(
@@ -138,25 +140,21 @@ function WorkEx(props) {
                                             })}
                                             
                                         </select>
-                                </div>
+                                </label>
                             </div>
-                            <div className="form-group row font mt-3">
-                                <label htmlFor="Textarea" className="col-sm-6 col-form-label">Job-description</label>
-                                <div className="col-sm-12">
-                                <TextArea  elementId="Textarea" rows="3" value={heading.jobDescription}
-                                    onChange={(value)=>{
-                                        dispatch(updateWorkEx({
-                                            key: 'jobDescription',
-                                            value:value,
-                                            index:index,
-                                        }))
-                                    }}
-                                />
-                                </div>
+                        </div>
+                        <div className="form-group row font">
+                            <div className="col-lg-12 col-12 pt-5 px-4"> 
+                                <label htmlFor="Textarea" className="col-sm-12 col-12 col-form-label">Job-description
+                                    <TextArea  elementId="Textarea" rows="3" value={workHeading.jobDescription}
+                                        onChange={(value)=>{onChangeHandler('jobDescription',value,index)}}
+                                    />
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             )
         })}
         <div className='d-flex'>
@@ -175,6 +173,7 @@ function WorkEx(props) {
         </div>
         <BottomNavigation prevPagePath='/detailsfillingpage/personalinfo' nextPagePath='/detailsfillingpage/education' isFormValid={props.isFormValid} />
     </div>
+    
   )
 }
 

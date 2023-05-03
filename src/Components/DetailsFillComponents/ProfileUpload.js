@@ -7,11 +7,20 @@ function App() {
     const dispatch = useDispatch();
     
     function handleChange(e) {
-        let temp=URL.createObjectURL(e.target.files[0])
-        dispatch(updateState({
-            key:'imageFile',
-            value:temp,
-        }))
+        let file = e.target.files[0]
+        const  fileType = file['type'];
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        if (validImageTypes.includes(fileType)) {
+            let temp=URL.createObjectURL(file)
+
+            dispatch(updateState({
+                key:'imageFile',
+                value:temp,
+            }))
+        }
+        else{
+            alert('Uploaded file type should be jpg/png!')
+        }
     }
     return (
         <div className="container">

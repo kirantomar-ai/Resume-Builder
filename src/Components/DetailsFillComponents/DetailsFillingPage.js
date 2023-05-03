@@ -9,11 +9,11 @@ import { updateState } from '../../ReduxManager/dataStoreSlice'
 
 function DetailsFillingPage() {
   const dispatch = useDispatch()
-  //errorMessages variable store all the warning messages passed from TextField while checking the validation of details filled by the user//
+  //errorMessages variable store all the error messages passed from TextField while checking the validation of details filled by the user//
   const errorMessages = useSelector(state=>state.dataStore.errorMessages)
 
   let isFormValid = true
-  //this 'for loop' checks whether there is any warningMessage in the errorMessages or not and if it finds any ,it will return the value of 'isFormValid' as 'false' otherwise it will not show any warning message.//
+  //this 'for loop' checks whether there is any error Message in the errorMessages or not and if it finds any ,it will return the value of 'isFormValid' as 'false' otherwise it will not show any warning message.//
   for(let key in errorMessages){
     if(errorMessages[key] !==""){
       isFormValid=false

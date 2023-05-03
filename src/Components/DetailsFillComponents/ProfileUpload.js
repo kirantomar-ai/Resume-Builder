@@ -7,6 +7,8 @@ function App() {
     const dispatch = useDispatch();
     
     function handleChange(e) {
+        //this function is used to update 'imageFile' in dataStoreSlice with the user given input ,
+        //which will be reflected in personalInfo as the profile image.
         let file = e.target.files[0]
         const  fileType = file['type'];
         const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];

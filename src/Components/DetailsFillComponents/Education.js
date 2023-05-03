@@ -19,7 +19,7 @@ function Education(props) {
        }))
        if(errorMessage!==undefined){
           dispatch(updateErrorMessages({
-            // this function is called each time when there is a validatin check applied on the 'TextField' component and it inserts án object {key: errorMessage} into the errorMessages of dataStoreSlice.
+            // this function is called each time when there is a validation check applied on the 'TextField' component and it inserts án object {key: errorMessage} into the errorMessages of dataStoreSlice.
             key:key,
             value:errorMessage
           }))
@@ -80,7 +80,7 @@ function Education(props) {
                     </div>
                     <div className="row font">
                         <div className="col-lg-6 col-12 pt-5 px-4"> 
-                            <label  className="col-md-12 col-12" htmlFor="University">University
+                            <label  className="col-md-12 col-12" htmlFor="University">University*
                                 <TextField   type="text" elementId="University" placeholder='University'value={educationHeading.University}
                                         onChange={
                                             // this onChange will be called by TextField component as props.onChange when the user gives input to the targeted field and,
@@ -98,7 +98,7 @@ function Education(props) {
                             </label>
                         </div>
                         <div className="col-lg-6 col-12 pt-5 px-4"> 
-                            <label  className="col-md-12 col-12" htmlFor="degree">Degree
+                            <label  className="col-md-12 col-12" htmlFor="degree">Degree*
                                 <TextField  type="text" elementId="Degree" placeholder='Degree'value={educationHeading.Degree}
                                         onChange={(value,errorMessage)=>{onChangeHandler('Degree',value,index,errorMessage)}}
                                         validation={{

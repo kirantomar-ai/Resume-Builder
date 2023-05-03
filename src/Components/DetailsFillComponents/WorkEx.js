@@ -68,7 +68,7 @@ function WorkEx(props) {
                         <hr/>
                         <div className="row font">
                             <div className="col-lg-6 col-12 pt-5 px-4">                                
-                                    <label className="col-sm-12 col-12" htmlFor="title" >Job Title:
+                                    <label className="col-sm-12 col-12" htmlFor="title" >Job Title*
                                         <TextField  
                                             type="text" elementId="title" placeholder='Enter Job Title' 
                                             value={workHeading.title}
@@ -88,7 +88,7 @@ function WorkEx(props) {
                                     </label>
                             </div>
                             <div className="col-lg-6 col-12 pt-5 px-4">  
-                                    <label className="col-sm-12 col-12" htmlFor="name" >Organization Name:
+                                    <label className="col-sm-12 col-12" htmlFor="name" >Organization Name*
                                         <TextField   type="text" elementId="name"  placeholder= 'Enter Organization Name'
                                             value={workHeading.orgName}
                                             onChange={(value,errorMessage)=>{onChangeHandler('orgName',value,index,errorMessage)}}

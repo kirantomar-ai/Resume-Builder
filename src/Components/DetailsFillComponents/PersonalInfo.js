@@ -37,7 +37,7 @@ function PersonalInfo(props) {
               <div className="col-lg-6 col-12 pt-5 px-4">
                 <div className='row '>
                   <div className='col-sm-2  col-12'>
-                    <label htmlFor="firstname" className="col-form-label ">First Name</label>
+                    <label htmlFor="firstname" className="col-form-label ">First Name*</label>
                   </div>
                   <div className='col-sm-10 col-12'>
                       {/* TextField basically serves the purpose of validating the details filled by the user by calling updateErrorMessages function and also updates the value of targeted key by using onChange function */}
@@ -63,7 +63,7 @@ function PersonalInfo(props) {
               <div className="col-lg-6 col-12 pt-5  px-4">
                   <div className='row'>
                     <div className='col-sm-2 col-12'>
-                      <label htmlFor="lastname" className="col-form-label">Last Name:</label>
+                      <label htmlFor="lastname" className="col-form-label">Last Name</label>
                     </div>
                     <div className='col-sm-10 col-12'>
                       <TextField type="text" elementId="lastname"  placeholder="Last name" 
@@ -78,7 +78,7 @@ function PersonalInfo(props) {
               <div className="col-lg-6 col-12 pt-5 px-4">
                 <div className='row '>
                   <div className='col-sm-2  col-12'>
-                      <label htmlFor="staticEmail" className="col-sm-1 col-form-label">Email</label>
+                      <label htmlFor="staticEmail" className="col-sm-1 col-form-label">Email*</label>
                   </div>
                   <div className="col-sm-10  col-12">
                       <TextField type="text"  elementId="staticEmail" placeholder='users@example.com' 
@@ -96,7 +96,7 @@ function PersonalInfo(props) {
               <div className="col-lg-6 col-12 pt-5 px-4">
                 <div className='row '>
                   <div className='col-sm-2  col-12'>
-                      <label htmlFor="mobile" className="col-sm-1 col-form-label">Mobile No.</label>
+                      <label htmlFor="mobile" className="col-sm-1 col-form-label">Mobile No.*</label>
                   </div>
                   <div className="col-sm-10  col-12">
                       <TextField type="number" elementId="Mobile" 
@@ -146,7 +146,7 @@ function PersonalInfo(props) {
               <div className="col-lg-6 col-12 pt-5 px-4">
                 <div className='row '>
                   <div className='col-sm-2  col-12'>
-                    <label htmlFor="inputCity" className="col-sm-1 col-form-label">City</label>
+                    <label htmlFor="inputCity" className="col-sm-1 col-form-label">City*</label>
                   </div>
                   <div className="col-sm-10 col-12">
                     <TextField type="text"  elementId="inputCity" 

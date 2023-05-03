@@ -65,7 +65,11 @@ export const dataStoreSlice = createSlice({
     },
     updateErrorMessages: (state,action) =>{
       //this function updates errorMessages element of dataStore //
-      state.errorMessages[action.payload.key]=action.payload.value
+      let key = action.payload.key
+      if(action.payload.index){
+        key+='_'+action.payload.index
+      }
+      state.errorMessages[key]=action.payload.value
     },
     addArrayElement:(state,action) =>{
       //this function is used to push a blank object in the array of elements(workEx,education& keySkills)

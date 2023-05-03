@@ -21,7 +21,8 @@ function Education(props) {
           dispatch(updateErrorMessages({
             // this function is called each time when there is a validation check applied on the 'TextField' component and it inserts án object {key: errorMessage} into the errorMessages of dataStoreSlice.
             key:key,
-            value:errorMessage
+            value:errorMessage,
+            index:index,
           }))
         }
       }
@@ -42,6 +43,18 @@ function Education(props) {
     function RemoveEducation(){
         //this function deletes the latest saved details in the education element, when the user clicks on the remove button.
         dispatch(removeArrayElement({key:"education" }))
+        //after deletion of education element , the errors associated with it also removed.
+        dispatch(updateErrorMessages({
+            key:'University',
+            value:"",
+            index:educationHeads.length-1
+          }))
+
+        dispatch(updateErrorMessages({
+            key:'Degree',
+            value:"",
+            index:educationHeads.length-1
+          }))
     }
 
     function yearRange(start, end) {

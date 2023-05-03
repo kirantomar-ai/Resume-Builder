@@ -23,7 +23,8 @@ function WorkEx(props) {
           dispatch(updateErrorMessages({
             // this function is called each time when there is a validatin check applied on the 'TextField' component and it inserts án object {key: errorMessage} into the errorMessages of dataStoreSlice.
             key:key,
-            value:errorMessage
+            value:errorMessage,
+            index:index
           }))
         }
       }
@@ -46,6 +47,18 @@ function WorkEx(props) {
     function RemoveExperience(){
         //this function deletes the latest saved details in the workEx element, when the user clicks on the remove button.
         dispatch(removeArrayElement({key:"workEx" }))
+        //after deletion of workEx element , the errors associated with it also removed.
+        dispatch(updateErrorMessages({
+            key:'title',
+            value:"",
+            index:workHeads.length-1
+          }))
+
+        dispatch(updateErrorMessages({
+            key:'orgName',
+            value:"",
+            index:workHeads.length-1
+          }))
     }
     function yearRange(start, end) {
         //this function  is used to create list of years in a range to display list of options in the 'Select' input field of the form.
